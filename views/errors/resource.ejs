@@ -6,8 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>404</h1>
-    <h2>Resource not found</h2>
-    <p><%=message%></p>
+    <h1><%=resourceErr.status.code%></h1>
+    <h2><%=resourceErr.status.description%></h2>
+    <p><%=resourceErr.resource%></p>
 </body>
 </html>

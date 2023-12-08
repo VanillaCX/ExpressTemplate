@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+const {ResourceError} = require("@VanillaCX/Errors");
 const express = require("express");
 const helmet = require("helmet");
 
@@ -38,9 +39,11 @@ app.use("/", publicRoute)
 
 // Fallback for un-matched requests
 app.use((req, res) => {
-    console.log(`App (404)\nRequest Time:${Date.now()}`)
+    const resourceErr = new ResourceError(req.originalUrl, 404);
+    console.error(resourceErr)
 
-    res.status(404).render("status/404", {message: "Sorry, dude !!"})
+    res.status(resourceErr.status.code)
+       .render("errors/resource", {resourceErr})
 })
 
 app.listen(port, () => console.log(`Server listening on port: ${port}`));
