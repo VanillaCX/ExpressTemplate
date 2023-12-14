@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+const {StoreCX} = require("@VanillaCX/Store");
 const {ResourceError} = require("@VanillaCX/Errors");
 const express = require("express");
 const helmet = require("helmet");
@@ -7,9 +8,10 @@ const helmet = require("helmet");
 // Entry point routes
 const publicRoute = require("./routes/public");
 const authorisedRoute = require("./routes/authorised");
+const testRoute = require("./routes/test");
 
 // Set port the app listens to
-const port = process.env.EXPRESS_SERVER_PORT || 3000;
+const port = process.env.EXPRESS_SERVER_PORT || 3030;
 
 // Create app
 const app = express();
@@ -26,6 +28,9 @@ app.set('view engine', 'ejs');
 // Enables static access to filesystem
 app.use('/public', express.static('public'));
 
+// Mongo DB Session Storage
+app.use(StoreCX.session)
+
 // Middleware for all requests
 app.use((req, res, next) => {
     console.log(`Request at ${Date.now()}`);
@@ -34,8 +39,11 @@ app.use((req, res, next) => {
 })
 
 // Setup entry point routing
-app.use("/me", authorisedRoute)
+app.use("/private", authorisedRoute)
 app.use("/", publicRoute)
+app.use("/test", testRoute)
+
+
 
 // Fallback for un-matched requests
 app.use((req, res) => {

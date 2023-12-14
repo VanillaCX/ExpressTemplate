@@ -8,7 +8,7 @@ router.use((req, res, next) => {
 })
 
 router.get("/", (req, res) => {
-    res.render("public/index");
+    res.render("public_homepage");
 })
 
 module.exports = router

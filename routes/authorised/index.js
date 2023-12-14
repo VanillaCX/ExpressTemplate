@@ -8,7 +8,7 @@ router.use((req, res, next) => {
 })
 
 router.get("/", (req, res) => {
-    res.render("authorised/index");
+    res.render("authenticated_homepage");
 })
 
 module.exports = router

@@ -1,7 +1,10 @@
 # ExpressTemplate
 
-1) Clone Repo
-2) Create .env file with following params:
-    EXPRESS_SERVER_PORT=8080
-3) Run
-    > npm install
+## Required ENV variables:
+1 - COSMOS_CONNECTION_STRING (Query, Store)
+2 - STORE_DATABASE (Store)
+3 - STORE_COLLECTION (Store)
+4 - STORE_SESSION_SECRET (Store)
+5 - STORE_COOKIE_DOMAIN (Store)
+
+6 - VANILLA_ENV (Store)
