@@ -11,7 +11,7 @@ const authorisedRoute = require("./routes/authorised");
 const testRoute = require("./routes/test");
 
 // Set port the app listens to
-const port = process.env.EXPRESS_SERVER_PORT || 3030;
+const port = process.env.PORT || 3030;
 
 // Create app
 const app = express();
